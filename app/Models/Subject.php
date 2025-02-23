@@ -12,5 +12,5 @@ class Subject extends Model
     use HasFactory, SoftDeletes, HasUuid;
 
     protected $table = 'subjects';
-    protected $fillable = ['uuid', 'subject_name', 'strand', 'grade_level', 'units', 'teacher'];
+    protected $fillable = ['uuid', 'subject_name', 'strand', 'grade_level', 'units', 'lecturer_uuid'];
 }

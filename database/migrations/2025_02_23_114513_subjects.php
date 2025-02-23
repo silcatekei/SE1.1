@@ -10,12 +10,12 @@ return new class extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid')->unique();
-            $table->string('subject_name');
-            $table->string('strand');
-            $table->string('grade_level');
-            $table->integer('units');
-            $table->string('teacher');
+            $table->uuid('uuid')->unique()->nullable();
+            $table->string('subject_name')->nullable();
+            $table->string('strand')->nullable();
+            $table->string('grade_level')->nullable();
+            $table->integer('units')->nullable();
+            $table->string('lecturer_uuid')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -10,11 +10,11 @@ return new class extends Migration
     {
         Schema::create('classes', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid')->unique();
-            $table->char('subject_uuid', 36);
-            $table->char('lecturer_uuid', 36);
-            $table->string('schedule');
-            $table->string('room_number');
+            $table->uuid('uuid')->unique()->nullable();
+            $table->char('subject_uuid', 36)->nullable();
+            $table->char('lecturer_uuid', 36)->nullable();
+            $table->string('schedule')->nullable();
+            $table->string('room_number')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });        

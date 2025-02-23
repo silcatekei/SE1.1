@@ -10,12 +10,12 @@ return new class extends Migration
     {
         Schema::create('enrollments', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid')->unique();
-            $table->char('student_uuid', 36);
-            $table->string('academic_year');
-            $table->string('semester');
-            $table->date('date_enrolled');
-            $table->enum('status', ['Enrolled', 'Pending', 'Dropped']);
+            $table->uuid('uuid')->unique()->nullable();
+            $table->char('student_uuid', 36)->nullable();
+            $table->string('academic_year')->nullable();
+            $table->string('semester')->nullable();
+            $table->date('date_enrolled')->nullable();
+            $table->enum('status', ['Enrolled', 'Pending', 'Dropped'])->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
