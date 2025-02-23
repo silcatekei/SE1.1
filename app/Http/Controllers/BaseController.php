@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Model;
 
 class BaseController extends Controller
 {
@@ -16,7 +15,12 @@ class BaseController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->validate($this->model::create([])->getFillable());
+        $data = $request->validate((new $this->model)->getFillable());
+
+        if ($this->model === \App\Models\User::class && isset($data['password'])) {
+            $data['password'] = bcrypt($data['password']);
+        }
+
         return response()->json($this->model::create($data), 201);
     }
 
@@ -29,6 +33,11 @@ class BaseController extends Controller
     {
         $model = $this->model::where('uuid', $uuid)->firstOrFail();
         $data = $request->validate($model->getFillable());
+
+        if ($this->model === \App\Models\User::class && isset($data['password'])) {
+            $data['password'] = bcrypt($data['password']);
+        }
+
         $model->update($data);
         return response()->json($model);
     }

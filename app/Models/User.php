@@ -14,4 +14,13 @@ class User extends Model
     protected $table = 'users';
     protected $fillable = ['uuid', 'username', 'password', 'role'];
     protected $hidden = ['password'];
+    protected $casts = ['uuid' => 'string'];
+
+    public static function boot()
+    {
+        parent::boot();
+        static::creating(function ($user) {
+            $user->password = bcrypt($user->password);
+        });
+    }
 }
