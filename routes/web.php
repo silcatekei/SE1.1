@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PageController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,11 +12,12 @@ use App\Http\Controllers\PageController;
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
-|
 */
 
-Route::get('/', function () {
-    return view('admission');
-});
+//Route::get('/', function () {
+//    return view('index'); // Display the 'index.blade.php' view
+//});
 
-Route::get('/admission', [PageController::class, 'admission'])->name('admission');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/posts/{id}', [PostController::class, 'show']);
