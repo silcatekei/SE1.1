@@ -23,18 +23,12 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email' => 'required_without:name|email',
-            'name' => 'required_without:email|string',
+            'username' => 'required|string',
             'password' => 'required|string',
         ]);
 
         $user = null;
-
-        if (isset($credentials['email'])) {
-            $user = User::where('email', $credentials['email'])->first();
-        } elseif (isset($credentials['name'])) {
-            $user = User::where('name', $credentials['name'])->first();
-        }
+        $user = User::where('username', $credentials['username'])->first();
 
         if (!$user || !Hash::check($credentials['password'], $user->password)) {
             return response()->json([
@@ -42,7 +36,7 @@ class AuthController extends Controller
             ], 401);
         }
 
-        $token = $user->createToken('prim')->plainTextToken;
+        $token = $user->createToken('spi')->plainTextToken;
 
         return response()->json([
             'message' => 'Login successful.',
@@ -108,8 +102,7 @@ class AuthController extends Controller
 
                 if ($user) {
                     $responseData['user'] = [
-                        'first_name' => $user->first_name,
-                        'last_name' => $user->last_name,
+                        'username' => $user->username,
                         'id' => $user->id,
                         'uuid' => $user->uuid,
                     ];
