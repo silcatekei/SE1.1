@@ -404,6 +404,11 @@ body.dark-mode .nav-link {
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    z-index: 1050 !important;
+}
+.modal-backdrop {
+    z-index: 1040 !important; /* Below the modal */
+    background-color: rgba(0, 0, 0, 0.5) !important; /* Adjust transparency as needed */
 }
 
 .modal-content {
@@ -418,7 +423,10 @@ body.dark-mode .nav-link {
     width: 80%; /* Could be more or less, depending on screen size */
     max-width: 600px; /* Added max-width for larger screens */
 }
-
+.modal-dialog {
+    max-width: 400px; /* Example: Adjust as needed */
+    margin: 1.75rem auto; /* Center horizontally (Bootstrap default is often fine) */
+}
 /* The Close Button */
 .close-button {
     color: #aaa;
