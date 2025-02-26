@@ -12,6 +12,8 @@
 
     @include('components.contact')
 
+    @include('components.admin')
+
     @include('components.footer')
 
     @include('components.modal')

@@ -27,7 +27,7 @@
                     <a class="nav-link" href="#" id="studentPortalLink" data-bs-toggle="modal" data-bs-target="#studentPortalModal">Student Portal</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" id="" data-bs-toggle="modal" data-bs-target="">Admin Portal</a>
+                    <a class="nav-link" href="#admin" id="" data-bs-toggle="modal" data-bs-target="">Admin Portal</a>
                 </li>
                 <li class="nav-item">
                     <label class="switch" style="margin-left: 10px;">  <!-- Added margin -->

@@ -3,7 +3,7 @@
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,3 +21,14 @@ use App\Http\Controllers\PostController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/posts/{id}', [PostController::class, 'show']);
+
+
+Route::group(['prefix' => 'admin', 'middleware' => 'guest:admin'], function () {
+    Route::get('/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('/login', [AdminController::class, 'login']);
+});
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout'); // Add a logout route
+});
