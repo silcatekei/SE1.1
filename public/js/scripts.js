@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM Loaded: This test work');
     console.log('script.js is running');
